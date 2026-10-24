@@ -1,0 +1,49 @@
+{
+  "title": "Celesto Sandbox Code Verification Agent - Control Plane",
+  "problem_statement": "Autonomous AI coding agents frequently generate, modify, and execute untrusted code during iterative development, test synthesis, and solution verification. Executing untrusted code directly on host machines or standard Docker containers introduces severe security, integrity, and operational risks: host filesystem pollution, accidental deletion of host files, credential exfiltration, prompt injection payloads that attempt reverse shells, and lack of deterministic rollback on transient step failure. The Celesto Sandbox Code Verification Agent provides a secure, audited, and isolated execution boundary using disposable Celesto microVM guests coupled to an immutable host-side PostgreSQL ledger control plane.",
+  "target_user": "Autonomous AI coding agents, AI benchmark runners, automated grading and verification platforms, and enterprise CI/CD verification pipelines executing untrusted third-party code.",
+  "core_challenges": [
+    {
+      "challenge": "Host Boundary Contamination",
+      "description": "Untrusted agent scripts can escape or mutate host files, environment variables, or local service sockets when run without strict hardware virtualization."
+    },
+    {
+      "challenge": "Exfiltration and Network Egress",
+      "description": "Adversarial code or prompt injection payloads can attempt external exfiltration of sensitive environment tokens or host secrets."
+    },
+    {
+      "challenge": "Transient Fault Recovery",
+      "description": "Multi-step agent pipelines often fail at verification steps due to transient timeouts or recoverable faults, requiring state rollback without restarting the entire workflow."
+    },
+    {
+      "challenge": "Concurrent Namespace Collisions",
+      "description": "Simultaneous execution of multiple agent evaluations risks resource contention, disk interference, and identifier collisions across concurrent jobs."
+    },
+    {
+      "challenge": "Auditability and Provenance",
+      "description": "Every command attempt, policy veto, lifecycle transition, and artifact hash must be immutably recorded in a trusted control plane ledger."
+    }
+  ],
+  "solution_architecture": {
+    "control_plane": {
+      "api": "FastAPI REST service exposing /health, /api/runs (GET/POST), and run management endpoints.",
+      "ledger": "PostgreSQL 16 relational ledger maintaining runs, lifecycle state transitions, and audit events."
+    },
+    "execution_plane": {
+      "runtime": "Celesto MicroVM guest isolation (celesto_sandbox) with zero host subprocess fallback.",
+      "safety_callbacks": "Pre-execution command vetting enforcing security command policy before guest VM dispatch.",
+      "state_recovery": "Point-in-time workspace snapshot checkpointing and rollback recovery on transient step failure.",
+      "guaranteed_cleanup": "Bounded timeouts and guaranteed terminal cleanup ensuring sandboxes always transition to 'deleted'."
+    }
+  },
+  "supported_execution_targets": [
+    "celesto_sandbox",
+    "celesto_cloud",
+    "celesto_local"
+  ],
+  "evaluated_capabilities": [
+    "celesto_safety_callbacks",
+    "guest_state_recovery",
+    "celesto_guest_isolation"
+  ]
+}

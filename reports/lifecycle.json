@@ -1,0 +1,155 @@
+{
+  "generated_at": "2026-10-24T01:53:25.520043+00:00",
+  "canonical_states": [
+    "created",
+    "ready",
+    "running",
+    "succeeded",
+    "failed",
+    "deleted"
+  ],
+  "state_machine_rules": {
+    "created": [
+      "deleted",
+      "failed",
+      "ready"
+    ],
+    "ready": [
+      "deleted",
+      "failed",
+      "running"
+    ],
+    "running": [
+      "deleted",
+      "failed",
+      "succeeded"
+    ],
+    "succeeded": [
+      "deleted"
+    ],
+    "failed": [
+      "deleted"
+    ],
+    "deleted": []
+  },
+  "verified_scenarios": [
+    {
+      "scenario": "success_lifecycle",
+      "sandbox_name": "sbx-32f98957c7c0",
+      "history": [
+        {
+          "from_state": "none",
+          "to_state": "created",
+          "timestamp": "2026-10-24T01:53:25.330615+00:00",
+          "metadata": {
+            "initial": true
+          }
+        },
+        {
+          "from_state": "created",
+          "to_state": "ready",
+          "timestamp": "2026-10-24T01:53:25.394907+00:00",
+          "metadata": {}
+        },
+        {
+          "from_state": "ready",
+          "to_state": "running",
+          "timestamp": "2026-10-24T01:53:25.394907+00:00",
+          "metadata": {}
+        },
+        {
+          "from_state": "running",
+          "to_state": "succeeded",
+          "timestamp": "2026-10-24T01:53:25.395551+00:00",
+          "metadata": {}
+        },
+        {
+          "from_state": "succeeded",
+          "to_state": "deleted",
+          "timestamp": "2026-10-24T01:53:25.395551+00:00",
+          "metadata": {}
+        }
+      ],
+      "final_state": "deleted",
+      "cleaned_up": true
+    },
+    {
+      "scenario": "failure_lifecycle",
+      "sandbox_name": "sbx-b5254fecdd10",
+      "history": [
+        {
+          "from_state": "none",
+          "to_state": "created",
+          "timestamp": "2026-10-24T01:53:25.395551+00:00",
+          "metadata": {
+            "initial": true
+          }
+        },
+        {
+          "from_state": "created",
+          "to_state": "ready",
+          "timestamp": "2026-10-24T01:53:25.457151+00:00",
+          "metadata": {}
+        },
+        {
+          "from_state": "ready",
+          "to_state": "running",
+          "timestamp": "2026-10-24T01:53:25.457151+00:00",
+          "metadata": {}
+        },
+        {
+          "from_state": "running",
+          "to_state": "failed",
+          "timestamp": "2026-10-24T01:53:25.457151+00:00",
+          "metadata": {
+            "error": "Simulated task failure"
+          }
+        },
+        {
+          "from_state": "failed",
+          "to_state": "deleted",
+          "timestamp": "2026-10-24T01:53:25.457151+00:00",
+          "metadata": {}
+        }
+      ],
+      "final_state": "deleted",
+      "cleaned_up": true
+    },
+    {
+      "scenario": "interruption_lifecycle",
+      "sandbox_name": "sbx-873eae3a6d6d",
+      "history": [
+        {
+          "from_state": "none",
+          "to_state": "created",
+          "timestamp": "2026-10-24T01:53:25.457151+00:00",
+          "metadata": {
+            "initial": true
+          }
+        },
+        {
+          "from_state": "created",
+          "to_state": "ready",
+          "timestamp": "2026-10-24T01:53:25.520043+00:00",
+          "metadata": {}
+        },
+        {
+          "from_state": "ready",
+          "to_state": "running",
+          "timestamp": "2026-10-24T01:53:25.520043+00:00",
+          "metadata": {}
+        },
+        {
+          "from_state": "running",
+          "to_state": "deleted",
+          "timestamp": "2026-10-24T01:53:25.520043+00:00",
+          "metadata": {
+            "interrupt": "SIGINT"
+          }
+        }
+      ],
+      "final_state": "deleted",
+      "cleaned_up": true
+    }
+  ]
+}

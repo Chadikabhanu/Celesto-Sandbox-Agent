@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-10-24T05:29:20.411602+00:00",
+  "provider": "mock",
+  "is_mock_run": true,
+  "cost_model": "celesto_microvm_tier1_estimate_0.05_usd_per_hour",
+  "is_cost_estimated": true,
+  "environment_notes": "Executed using Celesto test adapter (in-memory guest boundary) on Windows host. Hardware hypervisor (/dev/kvm) and Celesto Cloud live API remain untested in this environment due to absence of CELESTO_API_KEY credentials and Linux KVM support.",
+  "concurrency_level": 5,
+  "started_at": "2026-10-24T05:29:20.350725+00:00",
+  "completed_at": "2026-10-24T05:29:20.411602+00:00",
+  "total_concurrency_duration_s": 0.060821,
+  "total_cost_usd": 0.000255,
+  "successful_jobs": 5,
+  "failed_jobs": 0,
+  "collisions_detected": 0,
+  "shared_state_issues": 0,
+  "rate_limits_encountered": false,
+  "jobs": [
+    {
+      "job_id": "concurrency-job-01",
+      "sandbox_name": "sbx-c2fb9cfecc0a",
+      "started_at": "2026-10-24T05:29:20.350725+00:00",
+      "completed_at": "2026-10-24T05:29:20.405550+00:00",
+      "wall_clock_s": 0.055083,
+      "boot_to_ready_s": 0.053903,
+      "cost_usd": 5.1e-05,
+      "success": true,
+      "execution_target": "celesto_sandbox",
+      "error_message": null
+    },
+    {
+      "job_id": "concurrency-job-02",
+      "sandbox_name": "sbx-704232e51746",
+      "started_at": "2026-10-24T05:29:20.350725+00:00",
+      "completed_at": "2026-10-24T05:29:20.409588+00:00",
+      "wall_clock_s": 0.058136,
+      "boot_to_ready_s": 0.057296,
+      "cost_usd": 5.1e-05,
+      "success": true,
+      "execution_target": "celesto_sandbox",
+      "error_message": null
+    },
+    {
+      "job_id": "concurrency-job-03",
+      "sandbox_name": "sbx-e2af9d05ff33",
+      "started_at": "2026-10-24T05:29:20.350725+00:00",
+      "completed_at": "2026-10-24T05:29:20.407570+00:00",
+      "wall_clock_s": 0.056027,
+      "boot_to_ready_s": 0.055075,
+      "cost_usd": 5.1e-05,
+      "success": true,
+      "execution_target": "celesto_sandbox",
+      "error_message": null
+    },
+    {
+      "job_id": "concurrency-job-04",
+      "sandbox_name": "sbx-6834c6a1fdb5",
+      "started_at": "2026-10-24T05:29:20.350725+00:00",
+      "completed_at": "2026-10-24T05:29:20.409588+00:00",
+      "wall_clock_s": 0.058967,
+      "boot_to_ready_s": 0.058172,
+      "cost_usd": 5.1e-05,
+      "success": true,
+      "execution_target": "celesto_sandbox",
+      "error_message": null
+    },
+    {
+      "job_id": "concurrency-job-05",
+      "sandbox_name": "sbx-0e073f3ecbb9",
+      "started_at": "2026-10-24T05:29:20.350725+00:00",
+      "completed_at": "2026-10-24T05:29:20.407570+00:00",
+      "wall_clock_s": 0.057149,
+      "boot_to_ready_s": 0.056087,
+      "cost_usd": 5.1e-05,
+      "success": true,
+      "execution_target": "celesto_sandbox",
+      "error_message": null
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "policy_name": "checkpoint_rollback_retry",
+  "total_steps": 10,
+  "failure_step": 7,
+  "max_retries": 2,
+  "recovery_action": "restore_from_checkpoint_and_retry",
+  "fallback_action": "abort_and_cleanup_guest",
+  "target_environment": "celesto_sandbox",
+  "description": "Deterministic recovery policy for Step 7 verification failure. Upon transient error, records 'policy_applied' trace event, rolls back guest workspace to Step 6 baseline snapshot, and replays verification.",
+  "steps": [
+    {
+      "step": 1,
+      "name": "task_ingestion",
+      "description": "Ingest coding task definition and validation parameters"
+    },
+    {
+      "step": 2,
+      "name": "sandbox_creation",
+      "description": "Allocate isolated Celesto guest sandbox with unique ID"
+    },
+    {
+      "step": 3,
+      "name": "guest_readiness_probe",
+      "description": "Probe guest runtime readiness with bounded timeout"
+    },
+    {
+      "step": 4,
+      "name": "seed_workspace",
+      "description": "Transfer code bundle and test specifications to /workspace"
+    },
+    {
+      "step": 5,
+      "name": "pre_exec_security_scan",
+      "description": "Evaluate execution commands against security command policy"
+    },
+    {
+      "step": 6,
+      "name": "create_checkpoint",
+      "description": "Capture point-in-time snapshot/checkpoint of guest state"
+    },
+    {
+      "step": 7,
+      "name": "execute_verification",
+      "description": "Execute verification test suite (Injected failure point)"
+    },
+    {
+      "step": 8,
+      "name": "apply_recovery",
+      "description": "Evaluate failure and apply recovery policy if step 7 failed"
+    },
+    {
+      "step": 9,
+      "name": "extract_artifacts",
+      "description": "Extract verification proof artifacts and calculate hashes"
+    },
+    {
+      "step": 10,
+      "name": "teardown_and_cleanup",
+      "description": "Tear down guest sandbox and commit final ledger state"
+    }
+  ]
+}

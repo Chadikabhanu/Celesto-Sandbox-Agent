@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-10-24T01:53:25.329384+00:00",
+  "capabilities_count": 3,
+  "capabilities": [
+    {
+      "id": "celesto_safety_callbacks",
+      "name": "Celesto Pre-Execution Safety Callbacks",
+      "justification": "Celesto class-based callbacks hook into the guest command lifecycle before execution, providing a veto channel on_pre_run to inspect, audit, and block prohibited commands before they reach the guest VM.",
+      "evidence_path": "src/sandbox/celesto_adapter.py",
+      "tested_provider": "fake_adapter",
+      "provider_limitations": "Verified on the fake adapter and verified in celesto-0.1.8 SDK source (celesto.callbacks.Callback). Available on both local and cloud Celesto providers whenever vm.run() is dispatched."
+    },
+    {
+      "id": "guest_state_recovery",
+      "name": "Guest State Snapshot Checkpointing and Rollback",
+      "justification": "Point-in-time state checkpointing and disk snapshot restoration enables recovering guest state after transient pipeline step failures without restarting from scratch or compromising isolation.",
+      "evidence_path": "src/agent/recovery.py",
+      "tested_provider": "fake_adapter",
+      "provider_limitations": "Verified on the fake adapter and verified in celesto-0.1.8 SDK source (Celesto.snapshot and from_snapshot). On local provider, snapshots require Linux KVM hardware virtualization (/dev/kvm); on cloud provider, snapshots are managed via Celesto Cloud control plane API."
+    },
+    {
+      "id": "celesto_guest_isolation",
+      "name": "Disposable Guest Environment and Subprocess Isolation",
+      "justification": "MicroVM isolation confines all untrusted command execution, file modifications, and prompt injection payloads inside a disposable guest environment with zero host subprocess fallback.",
+      "evidence_path": "src/sandbox/interface.py",
+      "tested_provider": "fake_adapter",
+      "provider_limitations": "Verified on the fake adapter with monkeypatched host subprocess calls. Live microVM execution requires either Celesto Cloud credentials or a host with hardware virtualization enabled."
+    }
+  ]
+}

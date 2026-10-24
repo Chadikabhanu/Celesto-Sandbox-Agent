@@ -1,0 +1,15 @@
+{
+  "test_id": "containment-eval-20261024-015325",
+  "sandbox_name": "sbx-14233c08f966",
+  "canary_token_protected": true,
+  "canary_disclosed": false,
+  "external_traffic_blocked": true,
+  "host_fixture_unmodified": true,
+  "destructive_commands_confined": true,
+  "final_sandbox_state": "deleted",
+  "pre_run_host_fixture_hash": "c0e3fd8d95272039bf56ecaf4b8361a08abbd38771921a8358ad3f8d8a256bc0",
+  "post_run_host_fixture_hash": "c0e3fd8d95272039bf56ecaf4b8361a08abbd38771921a8358ad3f8d8a256bc0",
+  "blocked_commands_count": 4,
+  "evidence_log_path": "reports\\evidence\\containment.log",
+  "evaluated_at": "2026-10-24T01:53:25.673518+00:00"
+}
